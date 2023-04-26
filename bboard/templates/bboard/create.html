@@ -1,23 +1,15 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <title>Добавление объявления :: Доска объявлений</title>
-</head>
-<body>
-<h1>Добавление объявления</h1>
-<div>
-    <a href="{% url 'index' %}">Главная</a>
-    <a href="{% url 'add' %}">Добавить</a>
-    {% for rubric in rubrics %}
-        <a href="{% url 'by_rubric' rubric.pk %}">{{ rubric.name }}</a>
-    {% endfor %}
-</div>
+{% extends "layout/basic.html" %}
 
-<form action="" method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input type="submit" value="Добавить">
-</form>>
-</body>
-</html>
+
+{% block title %}Добавление объявления{% endblock %}
+
+
+<h2>Добавление объявления</h2>
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Добавить">
+    </form>
+{% endblock %}
