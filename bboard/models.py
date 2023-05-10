@@ -1,4 +1,19 @@
+from django.contrib.auth.models import User
 from django.db import models
+
+
+class AdvUser(models.Model):
+    is_activated = models.BooleanField(default=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+
+class Spare(models.Model):
+    name = models.CharField(max_length=30)
+
+
+class Machine(models.Model):
+    name = models.CharField(max_length=30)
+    spares = models.ManyToManyField(Spare)
 
 
 class Rubric(models.Model):
@@ -26,6 +41,28 @@ class Bb(models.Model):
     class Meta:
         verbose_name = "Объявление"
         verbose_name_plural = "Объявления"
-        ordering = ['-published']
+        ordering = ['-published', 'title']
+        get_latest_by = ['title', 'published']
+        db_table = "bboard_bb"
 
 
+class Human(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Имя")
+    male = models.TextField(blank=True, verbose_name="Пол")
+    age = models.SmallIntegerField(blank=True, verbose_name="Возраст")
+
+
+class Child(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Имя")
+    male = models.TextField(blank=True, verbose_name="Пол")
+    age = models.SmallIntegerField(blank=True, verbose_name="Возраст")
+
+
+class IceCream(models.Model):
+    taste = models.CharField(max_length=50, verbose_name="Вкус")
+    type = models.TextField(blank=True, verbose_name="Тип")
+    quantity = models.SmallIntegerField(blank=True, verbose_name="Количество шариков")
+
+
+class IceCreamMarket(models.Model):
+    name = models.CharField(max_length=50, verbose_name="Название")
