@@ -25,6 +25,16 @@ class Rubric(models.Model):
     def get_absolute_url(self):
         return f"/{self.pk}/"
 
+    def save(self, *args, **kwargs):
+        if True:
+            super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        if True:
+            super().delete(*args, **kwargs)
+
+
+
     class Meta:
         verbose_name = "Рубрика"
         verbose_name_plural = "Рубрики"
@@ -39,6 +49,11 @@ class Bb(models.Model):
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name="Опубликовано")
 
     def __str__(self):
+        return self.title
+
+    def title_and_price(self):
+        if self.price:
+            return '%s (%.2f)' % (self.title, self.price)
         return self.title
 
     class Meta:
