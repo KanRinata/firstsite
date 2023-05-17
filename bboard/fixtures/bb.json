@@ -1,0 +1,57 @@
+[
+  {
+    "model": "bboard.bb",
+    "pk": 1,
+    "fields": {
+      "rubric": 1,
+      "title": "Дача",
+      "content": "Общество \"Двухэтажники\". Два этажа, кирпич, свет, газ",
+      "price": 500000.0,
+      "published": "2023-04-19T10:37:38.331Z"
+    }
+  },
+  {
+    "model": "bboard.bb",
+    "pk": 3,
+    "fields": {
+      "rubric": 1,
+      "title": "Дом",
+      "content": "Трехэтажный, кирпич, свет, газ",
+      "price": 700000.0,
+      "published": "2023-04-19T10:40:08.321Z"
+    }
+  },
+  {
+    "model": "bboard.bb",
+    "pk": 4,
+    "fields": {
+      "rubric": 2,
+      "title": "Бобер",
+      "content": "Ездовой",
+      "price": 42343.0,
+      "published": "2023-04-24T11:43:57.035Z"
+    }
+  },
+  {
+    "model": "bboard.bb",
+    "pk": 5,
+    "fields": {
+      "rubric": 1,
+      "title": "Плотина",
+      "content": "Построена",
+      "price": 34324.0,
+      "published": "2023-04-24T11:45:18.909Z"
+    }
+  },
+  {
+    "model": "bboard.bb",
+    "pk": 6,
+    "fields": {
+      "rubric": 2,
+      "title": "Машина",
+      "content": "Мерседес черный",
+      "price": 34344324.0,
+      "published": "2023-04-26T10:49:30.310Z"
+    }
+  }
+]

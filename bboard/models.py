@@ -4,25 +4,24 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 
-def get_min_length():
-    min_length = 3
-    return min_length
+# def get_min_length():
+#     min_length = 3
+#     return min_length
+#
+#
+# def validate_even(val):
+#     if val % 2 != 0:
+#         raise ValidationError('Число %(value)s нечетное', code='odd', params={"value": val})
 
 
-def validate_even(val):
-    if val % 2 != 0:
-        raise ValidationError('Число %(value)s нечетное', code='odd', params={"value": val})
-
-
-class MinMaxValueValidator:
-    def __init__(self, min_value, max_value):
-        self.max_value = max_value
-        self.min_value = min_value
-
-    def __call__(self, val):
-        if val < self.min_value or val > self.max_value:
-            raise ValidationError('Введенное число должно быть больше %(min)s' 'и меньше %(max)s', code='out_of_range', params={'min': self.min_value, 'max': self.max_value})
-
+# class MinMaxValueValidator:
+#     def __init__(self, min_value, max_value):
+#         self.max_value = max_value
+#         self.min_value = min_value
+#
+#     def __call__(self, val):
+#         if val < self.min_value or val > self.max_value:
+#             raise ValidationError('Введенное число должно быть больше %(min)s' 'и меньше %(max)s', code='out_of_range', params={'min': self.min_value, 'max': self.max_value})
 
 
 class AdvUser(models.Model):
@@ -48,13 +47,13 @@ class Rubric(models.Model):
     def get_absolute_url(self):
         return f"/{self.pk}/"
 
-    def save(self, *args, **kwargs):
-        if True:
-            super().save(*args, **kwargs)
-
-    def delete(self, *args, **kwargs):
-        if True:
-            super().delete(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if True:
+    #         super().save(*args, **kwargs)
+    #
+    # def delete(self, *args, **kwargs):
+    #     if True:
+    #         super().delete(*args, **kwargs)
 
 
 
@@ -66,9 +65,12 @@ class Rubric(models.Model):
 
 class Bb(models.Model):
     rubric = models.ForeignKey("Rubric", null=True, on_delete=models.PROTECT, verbose_name="Рубрика")
-    title = models.CharField(max_length=50, verbose_name="Товар", validators=[validators.MinLengthValidator(get_min_length)], error_messages={'min_length': "Слишком мало символов"})
+    title = models.CharField(max_length=50, verbose_name="Товар")
+                              #validators=[validators.MinLengthValidator(get_min_length)], error_messages={'min_length': "Слишком мало символов"})
     content = models.TextField(null=True, blank=True, verbose_name="Описание")
-    price = models.FloatField(null=True, blank=True, verbose_name="Цена", validators=[validate_even, MinMaxValueValidator(50, 60_000_000)])
+    price = models.FloatField(null=True, blank=True, verbose_name="Цена")
+                              #validators=[validate_even])
+                              #MinMaxValueValidator(50, 60_000_000)])
     published = models.DateTimeField(auto_now_add=True, db_index=True, verbose_name="Опубликовано")
 
     def __str__(self):
@@ -83,8 +85,8 @@ class Bb(models.Model):
         verbose_name = "Объявление"
         verbose_name_plural = "Объявления"
         ordering = ['-published', 'title']
-        get_latest_by = ['title', 'published']
-        db_table = "bboard_bb"
+        #get_latest_by = ['title', 'published']
+        #db_table = "bboard_bb"
 
 
 class Human(models.Model):
